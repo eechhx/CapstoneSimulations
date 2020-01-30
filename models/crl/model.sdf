@@ -1,0 +1,40 @@
+<?xml version='1.0'?>
+<sdf version="1.4">
+  <model name="crl">
+    <static>1</static>
+      <link name="link">
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>400</mass>
+          <inertia>
+            <ixx>0</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0</iyy>
+            <iyz>0</iyz>
+            <izz>0</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="${name}_collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://crl/meshes/crl.dae</uri>
+              <!--<scale>0.1 0.1 0.1</scale>-->
+            </mesh>
+          </geometry>
+        </collision>
+
+        <visual name="{$name}_visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://crl/meshes/crl.dae</uri>
+              <!--<scale>0.1 0.1 0.1</scale>-->
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+  </model>
+</sdf>

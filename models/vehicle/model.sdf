@@ -1,0 +1,57 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+	<model name='vehicle'>
+		<static>false</static>
+		<link name="link">
+			<inertial>
+				<!-- insert inertial matrix???????? -->
+				<!-- x y z // r p y-->
+				<!-- http://sdformat.org/tutorials?tut=specify_pose&cat=specification& -->
+				<pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+				<!-- mass in kg -->
+				<mass>200</mass>
+			</inertial>
+
+			<collision name = "collision">
+				<geometry>
+					<mesh>
+						<uri>model://vehicle/meshes/vehicle.dae</uri>
+					</mesh>
+				</geometry>
+			</collision>
+
+			<visual name="visual">
+				<geometry>
+					<mesh>
+						<uri>model://vehicle/meshes/vehicle.dae</uri>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+
+		<link name="front-left-wheel">
+			<inertial>
+				<mass>20</mass>
+			</inertial>
+			<collision name="collision">
+        <geometry>
+            <cylinder>
+              <radius>0.05</radius>
+							<length>0.05</length>
+            </cylinder>
+        </geometry>
+			</collision>
+    <visual name="visual">
+        <geometry>
+            <cylinder>
+							<radius>1</radius>
+							<length>1.2</length>
+            </cylinder>
+        </geometry>
+        <material>
+            <script>Gazebo/Red</script>
+        </material>
+			</visual>
+		</link>
+	</model>
+</sdf>
