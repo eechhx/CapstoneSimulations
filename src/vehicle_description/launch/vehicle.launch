@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+
+<launch>
+  <arg name="namespace" default="vehicle"/>
+
+  <group ns="$(arg namespace)">
+    <param name="robot_description"
+      command="$(find xacro)/xacro.py $(find vehicle_description)/urdf/vehicle.xacro"/>
+
+    <node name="vehicle_state_publisher" pkg="robot_state_publisher"
+      type="robot_state_publisher">
+      <param name="publish_frequency" value="30.0"/>
+    </node>
+  </group>
+</launch>
