@@ -1,0 +1,33 @@
+<launch>
+
+  <arg name="world" default="empty"/>
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find rbcar_gazebo)/worlds/mac.world"/>
+
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+  <!-- Load the URDF into the ROS Parameter Server -->
+  <param name="robot_description"
+         command="$(find xacro)/xacro '$(find rbcar_description)/robots/rbcar.urdf.xacro' --inorder" />
+
+  <!-- Call a python script to the run a service call to gazebo_ros to spawn a URDF robot -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -model rbcar -param robot_description -x 120.53 -y 83 -z 1 -Y 1.57079632679"/>
+
+  <!-- rbcar_control launch file -->
+  <include file="$(find rbcar_control)/launch/rbcar_control.launch" />
+
+  <include file="$(find rbcar_robot_control)/launch/rbcar_robot_control.launch"/>
+
+</launch>

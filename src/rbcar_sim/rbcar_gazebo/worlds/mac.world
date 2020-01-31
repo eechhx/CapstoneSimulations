@@ -1,0 +1,340 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="mcmaster">
+    <gui>
+      <camera name="gzclient_camera">
+        <pose>157.73 -120.0959 161.237 0 0.55 1.84</pose>
+      </camera>
+    </gui>
+
+    <!-- SUN -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- GROUND_PLANE -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- ITB -->
+    <include>
+      <uri>model://itb</uri>
+      <name>itb</name>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <!-- ETB -->
+    <include>
+      <uri>model://etb</uri>
+      <name>etb</name>
+      <pose>87.26 -30 0 0 0 0</pose>
+    </include>
+
+    <!-- IAHS-->
+    <include>
+      <uri>model://iahs</uri>
+      <name>iahs</name>
+      <pose>79.70 88.52 0 0 0 0</pose>
+    </include>
+
+    <!-- T13 -->
+    <include>
+      <uri>model://t13</uri>
+      <name>t13</name>
+      <pose>131.98 -8.41 0 0 0 0</pose>
+    </include>
+
+    <!-- CRL -->
+    <include>
+      <uri>model://crl</uri>
+      <name>crl</name>
+      <pose>154.326 59 0 0 0 0</pose>
+    </include>
+
+    <!-- PC -->
+    <include>
+      <uri>model://pc</uri>
+      <name>pc</name>
+      <pose>136.13 102.5 0 0 0 0</pose>
+    </include>
+
+    <!-- JHE -->
+    <include>
+      <uri>model://jhe</uri>
+      <name>jhe</name>
+      <pose>37.50 192.13 0 0 0 0</pose>
+    </include>
+
+    <!-- ABB -->
+    <include>
+      <uri>model://abb</uri>
+      <name>abb</name>
+      <pose>-51.73 193.06 0 0 0 0</pose>
+    </include>
+
+    <!-- THODE -->
+    <include>
+      <uri>model://thode</uri>
+      <name>thode</name>
+      <pose>-105.49 274.8 0 0 0 0</pose>
+    </include>
+
+
+    <!-- WORLD COMPONENTS -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <include>
+      <uri>model://stop_sign</uri>
+      <name>stop_sign</name>
+      <pose>124.535 162 .25 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://stop_sign</uri>
+      <name>stop_sign2</name>
+      <pose>107 166 .25 0 0 -1.57079632679</pose>
+    </include>
+
+    <include>
+      <uri>model://hatchback</uri>
+      <name>hatchback</name>
+      <pose>72.25 167.16 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://hatchback_red</uri>
+      <name>hatchback_red</name>
+      <pose>65.38 167.16 0 0 0 0</pose>
+    </include>
+
+    <!-- GROUND -->
+    <model name="ground">
+      <link name="body">
+        <collision name="geom">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+      </link>
+      <static>true</static>
+    </model>
+
+    <!-- ROAD -->
+    <road name="etb_to_iahs">
+      <!-- Bottom Left Point x:111.91 ; y:165.90 -->
+      <!-- Road Begins at Midpoint of Road -->
+      <width>11.5</width>
+      <point>117.66 81.3 0</point>
+      <point>117.66 167.90 0</point>
+      <point>115.66 169.90 0</point>
+      <point>113.66 171.90 0</point>
+      <point>111.66 173.90 0</point>
+      <point>-99.63 173.90 0</point>
+      <point>-101.63 175.90 0</point>
+      <point>-103.63 177.90 0</point>
+      <point>-105.63 179.90 0</point>
+      <point>-107.63 181.90 0</point>
+      <point>-109.63 183.90 0</point>
+      <point>-111.63 185.90 0</point>
+      <point>-114.61 190.74 0</point>
+      <point>-133.09 298.92 0</point>
+    </road>
+
+    <!-- ETB - PC Right Sidwalk -->
+    <model name="sidewalk1">
+      <pose>123.41 81.3 0 0 0 0</pose>
+      <static>1</static>
+      <link name="body">
+        <collision name="${name}_collision">
+          <geometry>
+            <box>
+              <size>2.25 91.2 .25</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+
+        <visual name="${name}_visual">
+          <pose>1.125 45.6 .125 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2.25 91.2 .25</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ETB - PC Left Sidwalk -->
+    <model name="sidewalk2">
+      <pose>111.91 81.3 0 0 0 0</pose>
+      <static>1</static>
+      <link name="body">
+        <collision name="${name}_collision">
+          <geometry>
+            <box>
+              <size>2 84 .25</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="${name}_visual">
+          <pose>-1 42 .125 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2 84 .25</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- PC ROAD CURVE LEFT SECTION-->
+    <model name="sidewalk3">
+      <pose>111.91 165.3 0 0 0 0.785398</pose>
+      <static>1</static>
+      <link name="body">
+        <collision name="${name}_collision">
+          <geometry>
+            <box>
+              <size>2.5 4 .25</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="${name}_visual">
+          <pose>-1.25 2 .125 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2.5 4 .25</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- PC ROAD CURVE RIGHT SECTION -->
+    <model name="sidewalk4">
+      <pose>123.41 170.3 0 0 0 0.785398</pose>
+      <static>1</static>
+      <link name="body">
+        <collision name="${name}_collision">
+          <geometry>
+            <box>
+              <size>3.25 14 .25</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="${name}_visual">
+          <pose>1.635 7 .125 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>3.27 14 .25</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- THICKER SIDEWALK IN FRONT OF IAHS -->
+    <model name="sidewalk5">
+      <pose>109.5 168 0 0 0 1.57079632679</pose>
+      <static>1</static>
+      <link name="body">
+        <collision name="${name}_collision">
+          <geometry>
+            <box>
+              <size>4 34 .25</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="${name}_visual">
+          <pose>-2 17 .125 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>4 34 .25</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- IAHS SIDEWALK -->
+    <model name="sidewalk6">
+      <pose>75.5 166 0 0 0 1.57079632679</pose>
+      <static>1</static>
+      <link name="body">
+        <collision name="${name}_collision">
+          <geometry>
+            <box>
+              <size>4 34 .25</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="${name}_visual">
+          <pose>-1 75 .125 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2 150 .25</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

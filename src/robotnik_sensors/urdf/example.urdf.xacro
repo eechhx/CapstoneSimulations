@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="os1_example">
+  <xacro:macro name="os1_example" params="prefix parent prefix_topic:='ouster' *origin gpu:=false">
+
+  <!-- Base Footprint
+  <link name="base_footprint" /-->
+
+  <!-- Base Link -->
+  <joint name="footprint" type="fixed" >
+   <parent link="${parent}" />
+    <child link="${prefix}_base_link" />
+    <origin xyz="0 0 0.05" rpy="0 0 0" />
+  </joint>
+
+  <link name="${prefix}_base_link" >
+    <visual>
+      <geometry>
+        <box size="0.5 0.5 0.1" />
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.5 0.5 0.1" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="10"/>
+      <inertia ixx="3.0" ixy="0.0" ixz="0.0"
+               iyy="3.0" iyz="0.0"
+               izz="3.0" />
+    </inertial>
+  </link>
+
+  </xacro:macro>
+
+
+  <xacro:include filename="$(find robotnik_sensors)/urdf/OS1-64.urdf.xacro"/>
+  <OS1-64 parent="base_link" name="os1_sensor" hz="10" samples="220">
+    <origin xyz=".835 0 1.67" rpy="0 0 0" />
+  </OS1-64>
+
+
+
+</robot>
